@@ -7,5 +7,5 @@ import (
 
 func main() {
 	plugin.Serve(&plugin.ServeOpts{
-		ProviderFunc: template.Provider})
+		ProviderFunc: qingcloud.Provider})
 }
