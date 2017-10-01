@@ -564,6 +564,76 @@
 			"revisionTime": "2016-09-27T10:08:44Z"
 		},
 		{
+			"checksumSHA1": "BYvROBsiyAXK4sq6yhDe8RgT4LM=",
+			"path": "github.com/sirupsen/logrus",
+			"revision": "89742aefa4b206dcf400792f3bd35b542998eb3b",
+			"revisionTime": "2017-08-22T13:27:46Z"
+		},
+		{
+			"checksumSHA1": "Bid9/4UOfmgPrYpd5pznGq39QRQ=",
+			"path": "github.com/yunify/qingcloud-sdk-go",
+			"revision": "63bdada5c06f6653207ab91a4ed37cc8da7d5841",
+			"revisionTime": "2017-08-28T05:31:24Z",
+			"version": "v2.0.0-alpha.10",
+			"versionExact": "v2.0.0-alpha.10"
+		},
+		{
+			"checksumSHA1": "/qw6CfzdiLPhPJXX+4zBhZopHjY=",
+			"path": "github.com/yunify/qingcloud-sdk-go/config",
+			"revision": "63bdada5c06f6653207ab91a4ed37cc8da7d5841",
+			"revisionTime": "2017-08-28T05:31:24Z",
+			"version": "v2.0.0-alpha.10",
+			"versionExact": "v2.0.0-alpha.10"
+		},
+		{
+			"checksumSHA1": "92CGuRUaFH9idI5DfOzsTDZRt7g=",
+			"path": "github.com/yunify/qingcloud-sdk-go/logger",
+			"revision": "63bdada5c06f6653207ab91a4ed37cc8da7d5841",
+			"revisionTime": "2017-08-28T05:31:24Z",
+			"version": "v2.0.0-alpha.10",
+			"versionExact": "v2.0.0-alpha.10"
+		},
+		{
+			"checksumSHA1": "9wAGmoOnD4J31awRoMHppekAv28=",
+			"path": "github.com/yunify/qingcloud-sdk-go/request",
+			"revision": "63bdada5c06f6653207ab91a4ed37cc8da7d5841",
+			"revisionTime": "2017-08-28T05:31:24Z",
+			"version": "v2.0.0-alpha.10",
+			"versionExact": "v2.0.0-alpha.10"
+		},
+		{
+			"checksumSHA1": "EZ/0VLjazMXm0vefHYq1uCCNpDQ=",
+			"path": "github.com/yunify/qingcloud-sdk-go/request/data",
+			"revision": "63bdada5c06f6653207ab91a4ed37cc8da7d5841",
+			"revisionTime": "2017-08-28T05:31:24Z",
+			"version": "v2.0.0-alpha.10",
+			"versionExact": "v2.0.0-alpha.10"
+		},
+		{
+			"checksumSHA1": "IS7YQ7JkDD90g2Mf5b/arX+2hY0=",
+			"path": "github.com/yunify/qingcloud-sdk-go/request/errors",
+			"revision": "63bdada5c06f6653207ab91a4ed37cc8da7d5841",
+			"revisionTime": "2017-08-28T05:31:24Z",
+			"version": "v2.0.0-alpha.10",
+			"versionExact": "v2.0.0-alpha.10"
+		},
+		{
+			"checksumSHA1": "gANL5rRi/FjRV9OnPoEuoTzWXRE=",
+			"path": "github.com/yunify/qingcloud-sdk-go/service",
+			"revision": "63bdada5c06f6653207ab91a4ed37cc8da7d5841",
+			"revisionTime": "2017-08-28T05:31:24Z",
+			"version": "v2.0.0-alpha.10",
+			"versionExact": "v2.0.0-alpha.10"
+		},
+		{
+			"checksumSHA1": "XBQ4DfCJ4ayFi7mZEPNSKX8IMlo=",
+			"path": "github.com/yunify/qingcloud-sdk-go/utils",
+			"revision": "63bdada5c06f6653207ab91a4ed37cc8da7d5841",
+			"revisionTime": "2017-08-28T05:31:24Z",
+			"version": "v2.0.0-alpha.10",
+			"versionExact": "v2.0.0-alpha.10"
+		},
+		{
 			"checksumSHA1": "vE43s37+4CJ2CDU6TlOUOYE0K9c=",
 			"path": "golang.org/x/crypto/bcrypt",
 			"revision": "9477e0b78b9ac3d0b03822fd95422e2fe07627cd",
@@ -618,6 +688,10 @@
 			"revisionTime": "2017-07-23T04:49:35Z"
 		},
 		{
+			"path": "golang.org/x/crypto/ssh/terminal",
+			"revision": ""
+		},
+		{
 			"checksumSHA1": "vqc3a+oTUGX8PmD0TS+qQ7gmN8I=",
 			"path": "golang.org/x/net/html",
 			"revision": "1c05540f6879653db88113bc4a2b70aec4bd491f",
@@ -630,6 +704,16 @@
 			"revisionTime": "2017-08-04T00:04:37Z"
 		},
 		{
+			"path": "golang.org/x/sys/unix",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "RDJpJQwkF012L6m/2BJizyOksNw=",
+			"path": "gopkg.in/yaml.v2",
+			"revision": "eb3733d160e74a9c7e442f435eb3bea458e1d19f",
+			"revisionTime": "2017-08-12T16:00:11Z"
+		},
+		{
 			"checksumSHA1": "wICWAGQfZcHD2y0dHesz9R2YSiw=",
 			"path": "k8s.io/kubernetes/pkg/apimachinery",
 			"revision": "b0b7a323cc5a4a2019b2e9520c21c7830b7f708e",
@@ -638,5 +722,5 @@
 			"versionExact": "v1.6.1"
 		}
 	],
-	"rootPath": "github.com/terraform-providers/terraform-provider-template"
+	"rootPath": "github.com/shonenada/terraform-provider-qingcloud"
 }
