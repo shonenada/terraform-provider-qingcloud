@@ -54,7 +54,7 @@ func resourceQingCloudKeyPairRead(d *schema.ResourceData, meta interface{}) erro
 	}
 
 	if qc.IntValue(rv.RetCode) != 0 {
-		return fmt.Errorf("Failed to read key pair: %s", *rv.Message)
+		return fmt.Errorf("Remote server refused to read key pair: %s", *rv.Message)
 	}
 
 	keyPair := rv.KeyPairSet[0]
@@ -94,7 +94,7 @@ func resourceQingCloudKeyPairCreate(d *schema.ResourceData, meta interface{}) er
 	}
 
 	if qc.IntValue(rv.RetCode) != 0 {
-		return fmt.Errorf("Failed to create key pair: %s", *rv.Message)
+		return fmt.Errorf("Remote server refused to create key pair: %s", *rv.Message)
 	}
 
 	log.Printf("[INFO] Created KeyPair: %s", qc.StringValue(rv.KeyPairID))
@@ -130,7 +130,7 @@ func resourceQingCloudKeyPairUpdate(d *schema.ResourceData, meta interface{}) er
 	}
 
 	if qc.IntValue(rv.RetCode) != 0 {
-		return fmt.Errorf("Failed to update key pair: %s", *rv.Message)
+		return fmt.Errorf("Remote server refused to update key pair: %s", *rv.Message)
 	}
 
 	log.Printf("[INFO] Updated KeyPair: %s", qc.StringValue(&keyId))
@@ -155,7 +155,7 @@ func resourceQingCloudKeyPairDelete(d *schema.ResourceData, meta interface{}) er
 	}
 
 	if qc.IntValue(rv.RetCode) != 0 {
-		return fmt.Errorf("Failed to delete key pair: %s", err)
+		return fmt.Errorf("Remote server refused to delete key pair: %s", err)
 	}
 
 	return nil
