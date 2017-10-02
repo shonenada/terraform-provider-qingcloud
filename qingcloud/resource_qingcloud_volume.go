@@ -14,30 +14,30 @@ func resourceQingCloudVolume() *schema.Resource {
 
 		Schema: map[string]*schema.Schema{
 			"zone": {
-				Type: schema.TypeString,
+				Type:     schema.TypeString,
 				Required: true,
 			},
 			"count": {
-				Type: schema.TypeInt,
+				Type:     schema.TypeInt,
 				Required: false,
-				Default: 1
+				Default:  1,
 			},
 			"size": {
-				Type: schema.TypeInt,
+				Type:     schema.TypeInt,
 				Required: true,
 			},
 			"name": {
-				Type: schema.TypeString,
+				Type:     schema.TypeString,
 				Required: false,
 			},
-			"type": { 
-				Type: schema.TypeInt,
+			"type": {
+				Type:     schema.TypeInt,
 				Required: false,
 			},
 			"description": {
-				Type: schema.TypeString,
+				Type:     schema.TypeString,
 				Required: false,
-			}
+			},
 		},
 	}
 }
@@ -60,11 +60,11 @@ func resourceQingCloudVolumeRead(d *schema.ResourceData, meta interface{}) error
 	rv, err := volumeService.DescribeVolumes(opts)
 
 	if err != nil {
-		return fmt.Errorf("Failed to get volume: %s", err)
+		return fmt.Errorf("Failed to read volume: %s", err)
 	}
 
 	if qc.IntValue(rv.RetCode) != 0 {
-		return fmt.Errorf("Failed to get volume: %s", err)
+		return fmt.Errorf("Remote server refused to read volume: %s", &rv.Message)
 	}
 
 	volume := rv.Volumes[0]
@@ -94,7 +94,7 @@ func resourceQingCloudVolumeCreate(d *schema.ResourceData, meta interface{}) err
 	opts.Count = &count
 	opts.Size = &size
 	opts.VolumeName = &name
-	opts.VolumeType= &type_
+	opts.VolumeType = &type_
 
 	rv, err := volumeService.CreateVolume(opts)
 
@@ -103,7 +103,7 @@ func resourceQingCloudVolumeCreate(d *schema.ResourceData, meta interface{}) err
 	}
 
 	if qc.IntValue(rv.RetCode) != 0 {
-		return fmt.Errorf("Failed to create volume: %s", *rv.Message)
+		return fmt.Errorf("Remote server refused to create volume: %s", *rv.Message)
 	}
 
 	volume := rv.Volumes[0]
@@ -128,7 +128,7 @@ func updateVolumeAttr(service, id, name, description) error {
 	}
 
 	if qc.IntValue(rv.RetCode) != 0 {
-		return fmt.Errorf("Failed to modify volume attr: %s", *rv.Message)
+		return fmt.Errorf("Remote server refused to modify volume attr: %s", *rv.Message)
 	}
 
 	return nil
@@ -146,7 +146,7 @@ func resizeVolume(service, id, size) error {
 	}
 
 	if qc.IntValue(rv.RetCode) != 0 {
-		return fmt.Errorf("Failed to resize volume: %s", *rv.Message)
+		return fmt.Errorf("Remote server refused to to resize volume: %s", *rv.Message)
 	}
 
 	return nil
@@ -200,7 +200,7 @@ func resourceQingCloudVolumeDelete(d *schema.ResourceData, meta interface{}) err
 	}
 
 	if qc.IntValue(rv.RetCode) != 0 {
-		return fmt.Errorf("Failed to delete volume: %s", *rv.Message)
+		return fmt.Errorf("Remote server refused to delete volume: %s", *rv.Message)
 	}
 
 	return nil
