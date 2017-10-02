@@ -2,17 +2,18 @@ package qingcloud
 
 import (
 	"fmt"
+	"log"
+
 	"github.com/hashicorp/terraform/helper/schema"
 	qc "github.com/yunify/qingcloud-sdk-go/service"
-	"log"
 )
 
-func resourceQingcloudKeyPair() *schema.Resource {
+func resourceQingCloudKeyPair() *schema.Resource {
 	return &schema.Resource{
-		Read:   resourceQingcloudKeyPairRead,
-		Create: resourceQingcloudKeyPairCreate,
-		Update: resourceQingcloudKeyPairUpdate,
-		Delete: resourceQingcloudKeyPairDelete,
+		Read:   resourceQingCloudKeyPairRead,
+		Create: resourceQingCloudKeyPairCreate,
+		Update: resourceQingCloudKeyPairUpdate,
+		Delete: resourceQingCloudKeyPairDelete,
 
 		Schema: map[string]*schema.Schema{
 			"zone": {
@@ -31,7 +32,7 @@ func resourceQingcloudKeyPair() *schema.Resource {
 	}
 }
 
-func resourceQingcloudKeyPairRead(d *schema.ResourceData, meta interface{}) error {
+func resourceQingCloudKeyPairRead(d *schema.ResourceData, meta interface{}) error {
 	client := meta.(*QingCloudClient)
 
 	zone := d.Get("zone").(string)
@@ -49,24 +50,24 @@ func resourceQingcloudKeyPairRead(d *schema.ResourceData, meta interface{}) erro
 	rv, err := keyPairService.DescribeKeyPairs(opts)
 
 	if err != nil {
-		return fmt.Errorf("Failed to create key pair: %s", err)
+		return fmt.Errorf("Failed to read key pair: %s", err)
 	}
 
 	if qc.IntValue(rv.RetCode) != 0 {
-		return fmt.Errorf("Failed to create key pair: %s", *rv.Message)
+		return fmt.Errorf("Failed to read key pair: %s", *rv.Message)
 	}
 
-	keyPairs := rv.KeyPairSet
+	keyPair := rv.KeyPairSet[0]
 
-	d.Set("key_id", keyPairs[0].KeyPairID)
-	d.Set("name", keyPairs[0].KeyPairName)
-	d.Set("description", keyPairs[0].Description)
-	d.Set("public_key", keyPairs[0].PubKey)
+	d.Set("key_id", keyPair.KeyPairID)
+	d.Set("name", keyPair.KeyPairName)
+	d.Set("description", keyPair.Description)
+	d.Set("public_key", keyPair.PubKey)
 
 	return nil
 }
 
-func resourceQingcloudKeyPairCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceQingCloudKeyPairCreate(d *schema.ResourceData, meta interface{}) error {
 	client := meta.(*QingCloudClient)
 
 	zone := d.Get("zone").(string)
@@ -89,7 +90,6 @@ func resourceQingcloudKeyPairCreate(d *schema.ResourceData, meta interface{}) er
 	rv, err := keyPairService.CreateKeyPair(opts)
 
 	if err != nil {
-		fmt.Printf("[DEBUG]: access_key %s", client.config.AccessKey)
 		return fmt.Errorf("Failed to create key pair: %s", err)
 	}
 
@@ -104,7 +104,7 @@ func resourceQingcloudKeyPairCreate(d *schema.ResourceData, meta interface{}) er
 	return nil
 }
 
-func resourceQingcloudKeyPairUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceQingCloudKeyPairUpdate(d *schema.ResourceData, meta interface{}) error {
 	client := meta.(*QingCloudClient)
 
 	zone := d.Get("zone").(string)
@@ -138,7 +138,7 @@ func resourceQingcloudKeyPairUpdate(d *schema.ResourceData, meta interface{}) er
 	return nil
 }
 
-func resourceQingcloudKeyPairDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceQingCloudKeyPairDelete(d *schema.ResourceData, meta interface{}) error {
 	client := meta.(*QingCloudClient)
 
 	zone := d.Get("zone").(string)

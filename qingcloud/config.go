@@ -29,7 +29,7 @@ func (c *Config) Client() (*QingCloudClient, error) {
 		return nil, err
 	}
 
-	log.Printf("[INFO] Qingcloud Client created")
+	log.Printf("[INFO] QingCloud Client created")
 
 	return &QingCloudClient{
 		config:  c,
