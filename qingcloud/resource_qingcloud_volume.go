@@ -1,6 +1,9 @@
 package qingcloud
 
 import (
+	"fmt"
+	"log"
+
 	"github.com/hashicorp/terraform/helper/schema"
 	qc "github.com/yunify/qingcloud-sdk-go/service"
 )
