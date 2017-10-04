@@ -97,9 +97,11 @@ func resourceQingCloudKeyPairCreate(d *schema.ResourceData, meta interface{}) er
 		return fmt.Errorf("Remote server refused to create key pair: %s", *rv.Message)
 	}
 
-	log.Printf("[INFO] Created KeyPair: %s", qc.StringValue(rv.KeyPairID))
+	id = qc.StringValue(rv.KeyPairId)
 
-	d.SetId(qc.StringValue(rv.KeyPairID))
+	log.Printf("[INFO] Created KeyPair: %s", id)
+
+	d.SetId(id)
 
 	return nil
 }
@@ -157,6 +159,8 @@ func resourceQingCloudKeyPairDelete(d *schema.ResourceData, meta interface{}) er
 	if qc.IntValue(rv.RetCode) != 0 {
 		return fmt.Errorf("Remote server refused to delete key pair: %s", err)
 	}
+
+	d.SetId("")
 
 	return nil
 }

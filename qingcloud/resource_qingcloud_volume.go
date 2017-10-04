@@ -206,5 +206,7 @@ func resourceQingCloudVolumeDelete(d *schema.ResourceData, meta interface{}) err
 		return fmt.Errorf("Remote server refused to delete volume: %s", *rv.Message)
 	}
 
+	d.SetId("")
+
 	return nil
 }

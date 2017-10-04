@@ -166,5 +166,7 @@ func resourceQingCloudVxNetDelete(d *schema.ResourceData, meta interface{}) erro
 		return fmt.Errorf("Remote server refused to delete VxNet: %s", &rv.Message)
 	}
 
+	d.SetId("")
+
 	return nil
 }

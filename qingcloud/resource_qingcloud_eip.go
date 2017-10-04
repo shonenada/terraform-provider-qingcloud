@@ -7,10 +7,10 @@ import (
 
 func resourceQingCloudEIP() *schema.Resource {
 	return &schema.Resource{
-		Read:   resourceQingCloudRead,
-		Create: resourceQingCloudCreate,
-		Update: resourceQingCloudUpdate,
-		Delete: resourceQingCloudDelete,
+		Read:   resourceQingCloudEIPRead,
+		Create: resourceQingCloudEIPCreate,
+		Update: resourceQingCloudEIPUpdate,
+		Delete: resourceQingCloudEIPDelete,
 
 		Schema: map[string]*schema.Schema{
 			"zone": {
@@ -46,10 +46,10 @@ func resourceQingCloudEIP() *schema.Resource {
 	}
 }
 
-func resourceQingCloudRead(d *schema.ResourceData, meta interface{}) error {
+func resourceQingCloudEPRead(d *schema.ResourceData, meta interface{}) error {
 }
 
-func resourceQingCloudCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceQingCloudEIPCreate(d *schema.ResourceData, meta interface{}) error {
 	client := meta.(*QingCloudClient)
 
 	zone := d.Get("zone").(string)
@@ -153,7 +153,7 @@ func changeBandwidth(service, id, bandwidth) error {
 	return nil
 }
 
-func resourceQingCloudUpdate(d *schema.ResourceData, m interface{}) error {
+func resourceQingCloudEIPUpdate(d *schema.ResourceData, m interface{}) error {
 	client := m.(*QingCloudClient)
 
 	zone := d.Get("zone").(string)
@@ -189,7 +189,7 @@ func resourceQingCloudUpdate(d *schema.ResourceData, m interface{}) error {
 	return nil
 }
 
-func resourceQingCloudDelete(d *schema.ResourceData, m interface{}) error {
+func resourceQingCloudEIPDelete(d *schema.ResourceData, m interface{}) error {
 	client := m.(*QingCloudClient)
 	
 	zone := d.Get("zone").(string)
@@ -212,6 +212,8 @@ func resourceQingCloudDelete(d *schema.ResourceData, m interface{}) error {
 	if qc.IntValue(rv.RetCode) != 0 {
 		return fmt.Errorf("Remote server refused to delete EIP: %s", &rv.Message)
 	}
+
+	d.SetId("")
 
 	return nil
 }
