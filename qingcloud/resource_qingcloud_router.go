@@ -66,7 +66,7 @@ func resourceQingCloudRouterRead(d *schema.ResourceData, m interface{}) error {
 	}
 
 	if qc.IntValue(rv.RetCode) != 0 {
-		return fmt.Errorf("Remote service refused to read router: %s", *rv.Message)
+		return fmt.Errorf("Remote server refused to read router: %s", *rv.Message)
 	}
 
 	router := rv.RouterSet[0]
@@ -76,6 +76,8 @@ func resourceQingCloudRouterRead(d *schema.ResourceData, m interface{}) error {
 	d.Set("description", router.Description)
 	d.Set("security_group", router.SecurityGroupID)
 	d.Set("eip", router.EIP)
+
+	return nil
 }
 
 func resourceQingCloudRouterCreate(d *schema.ResourceData, m interface{}) error {
